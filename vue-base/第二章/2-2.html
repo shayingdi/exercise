@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello world</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <div id="root">{{content}}</div>
+    <script>
+        var dom = document.getElementById("app");
+        dom.innerHTML = "hello world";
+        setTimeout(function(){
+            dom.innerHTML = "bye world";
+        },2000);
+        var vm = new Vue({
+            el: '#root',//实例负责管理的区域，接管root标签中的内容
+            data: {
+                content: 'hello world2'
+            }
+        })
+        setTimeout(function(){
+            vm.$data.content = 'bye world2'
+        },2000);
+    </script>
+</body>
+</html>
