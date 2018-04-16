@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <table>
+            <tbody>
+                <tr is="row"></tr>
+                <tr is="row"></tr>
+                <tr is="row"></tr>
+            </tbody>
+        </table>
+        <div @click="handleClick" ref='hello'>hello world</div>
+    </div>
+    <div id="app">
+            <counter @change="handle" ref="one"></counter>
+            <counter @change="handle" ref="two"></counter>
+            <div>{{total}}</div>
+    </div>
+    <script>
+        Vue.component('row',{
+            data() {
+                return {
+                    content: 'this is a row'
+                }
+            },
+            template: '<tr><td>{{content}}</td></tr>'
+        })
+        var vm = new Vue({
+            el: '#root',
+            methods: {
+                handleClick() {
+                    console.log(this.$refs.hello.innerHTML)
+                }
+            }
+        })
+
+
+        Vue.component('counter', {
+            data() {
+                return {
+                    number: 0
+                }
+            },
+            template: '<div @click="handleClick">{{number}}</div>',
+            methods: {
+                handleClick() {
+                    this.number++
+                    this.$emit('change')
+                }
+            }
+        })
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                total: 0
+            },
+            methods: {
+                handle() {
+                    this.total = this.$refs.one.number + this.$refs.two.number
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

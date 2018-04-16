@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 占位符 -->
+        <template>
+            <div v-for="(item, index) of list" :key="index">{{item}} {{index}}</div>
+            <div v-for="(item, key, index) of userInfo">{{item}}---{{key}}--{{index}}</div>
+        </template>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            //push pop shift unshift sort reverse splice 编译方法
+            //改变引用，改变整个数组
+            data: {
+                list: [1, 2, 3, 4],
+                userInfo: {
+                    name: 'shayingdi',
+                    age: 27
+                }
+            }
+        })
+    </script>
+</body>
+</html>

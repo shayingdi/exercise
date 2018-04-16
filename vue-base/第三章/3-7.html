@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app" v-if="show">{{message}}</div>
+    <div id="app" v-else>bye world</div>
+    <!-- <div id="app" v-show="show">{{message}}</div> -->
+    <!-- v-showdom存在的，display:none，dom依然存在，而v-ifdom不存在了 ，v-show性能好，不会频繁添加dom-->
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                show: false,
+                message: 'hello world'
+            }
+        })
+    </script>
+</body>
+</html>

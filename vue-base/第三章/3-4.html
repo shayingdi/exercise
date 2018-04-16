@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>{{firstname+" "+lastname}}</div>
+        <!-- <div>{{fullname}}{{age}}</div> -->
+        <div>{{fullname()}}</div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                firstname: 'dell',
+                lastname: 'li',
+                age: 28
+                // fullname: 'dell li'
+            },
+            computed: {
+                //内置缓存的，依赖的值没有改变，不会重新计算
+                // fullname() {
+                //     console.log('计算了一次')
+                //     return this.firstname + " " + this.lastname
+                // }
+            },
+            methods: {
+                //方法不如计算属性效率高
+                fullname() {
+                    console.log('计算了一次')
+                    return this.firstname + " " + this.lastname
+                }
+            },
+            watch: {
+                //监听 都具备缓存的机制 watch的语法更复杂了一些
+                //如果可以使用这三种语法来实现，那么优先选择computed
+                firstname() {
+                    this.firstname = this.firstname + " " + this.lastname
+                },
+                lastname() {
+                    this.lastname = this.firstname + " " + this.lastname
+                }
+            }
+        })
+    </script>
+</body>
+</html>

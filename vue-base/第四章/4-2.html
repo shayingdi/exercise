@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件之间传值</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <counter :counter="0" @change="handleChange"></counter>
+        <counter :counter="1" @change="handleChange"></counter>
+        <div>{{total}}</div>
+    </div>
+    <script>
+        var counter = {
+            props: ['counter'],
+            data() {
+                return {
+                    number: this.counter
+                }
+            },
+            template: '<div @click="handleClick">{{number}}</div>',
+            methods: {
+                handleClick() {
+                    this.number ++
+                    this.$emit('change', 1)
+                }
+            }
+        }
+        var vm = new Vue({
+            el: '#app',
+            components: {
+                counter: counter 
+            },
+            data: {
+                total: 1
+            },
+            methods: {
+                handleChange(step) {
+                    this.total = this.total + step
+                }
+            }
+        })
+    </script>
+</body>
+</html>

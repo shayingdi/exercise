@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">{{fullname}}</div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                firstname: 'dell',
+                lastname: 'li'
+            },
+            computed: {
+                // fullname() {
+                //     return this.firstname + " " + this.lastname
+                // }
+                fullname: {
+                    get() {
+                        return this.firstname + " " + this.lastname
+                    },
+                    set(value) {
+                        //设置fullname的时候这个函数就会执行;
+                        var arr = value.split(" ");
+                        this.firstname = arr[0];
+                        this.lastname = arr[1];
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
