@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- <div id="app">
+        <child content="<p>Dell</p>"></child>
+        <child>
+            <h1>shayingdi</h1>
+        </child>
+        <child></child>
+    </div> -->
+
+    <div id="root">
+        <body-content>
+            <header class="header" slot="header">header</header>
+            <footer class="footer" slot="footer">footer</footer>
+        </body-content>
+    </div>
+    <script>
+        // 1
+        // Vue.component('child', {
+        //     props: ['content'],
+        //     //template: '<div><p>hello</p><div v-html="this.content"></div></div>'
+        //     template: '<div>hello<slot>默认内容</slot></div>'
+        // })
+        // var vm = new Vue({
+        //     el: '#app'
+        // })
+
+        // 2
+            
+        Vue.component('body-content', {
+            template: `<div>
+                            <slot name="header"></slot>
+                                content
+                            <slot name="footer"></slot>
+                        </div>`
+        })
+
+        var root = new Vue({
+            el: '#root',
+        })
+    </script>
+</body>
+</html>
